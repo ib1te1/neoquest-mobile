@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "551559235877",
+    "firebase_url": "https://neoflex-b4d9e-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "neoflex-b4d9e",
+    "storage_bucket": "neoflex-b4d9e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551559235877:android:b6ef543ed4dafa603172cc",
+        "android_client_info": {
+          "package_name": "com.example.neo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBT9p6v_bRbU2KrRrExBhOsUl0cwfuUSHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551559235877:android:45b022155fdba33e3172cc",
+        "android_client_info": {
+          "package_name": "ru.troshin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBT9p6v_bRbU2KrRrExBhOsUl0cwfuUSHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

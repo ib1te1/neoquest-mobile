@@ -1,0 +1,73 @@
+name: neo
+description: "A new Flutter project."
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  firebase_core: ^3.9.0
+  firebase_auth: ^5.3.4
+  firebase_database: ^11.0.3
+  provider: ^6.1.1
+
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^5.0.0
+
+flutter:
+
+  uses-material-design: true
+  assets:
+    - assets/logo.jpg
+    - assets/mascot.jpg
+    - assets/stage3_images/distractor1.jpg
+    - assets/stage3_images/distractor2.jpg
+    - assets/stage3_images/distractor3.jpg
+    - assets/stage3_images/image_05.jpg
+    - assets/stage3_images/image_20.jpg
+    - assets/stage5_images/pear.png
+    - assets/stage5_images/strawberry.png
+    - assets/stage5_images/raspberry.png
+    - assets/stage5_images/orange.png
+    - assets/stage5_images/grapefruit.png
+    - assets/stage5_images/radish.png
+    - assets/stage5_images/eggplant.png
+    - assets/stage5_images/sunflower.png
+    - assets/shop/bottle.jpg
+    - assets/shop/notebook1.jpg
+    - assets/shop/notebook2.jpg
+    - assets/shop/plush.jpg
+    - assets/shop/powerbank.jpg
+    - assets/shop/speaker1.jpg
+    - assets/shop/speaker2.jpg
+    - assets/shop/stickers.jpg
+    - assets/shop/thermo.jpg
+  fonts:
+    - family: Segoe UI
+      fonts:
+        - asset: assets/fonts/segoeui.ttf
+        - asset: assets/fonts/seguisb.ttf
+          weight: 700
+        - asset: assets/fonts/segoeuil.ttf
+          style: italic
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 700
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Regular.ttf
+        - asset: assets/fonts/Montserrat-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Montserrat-SemiBold.ttf
+          weight: 600
