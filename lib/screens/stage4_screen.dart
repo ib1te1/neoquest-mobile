@@ -27,17 +27,20 @@ class _Stage4ScreenState extends State<Stage4Screen> {
   final Set<String> guessedLetters = {};
   int mistakes = 0;
   final int maxMistakes = 7;
-  final List<String> alphabet =
-  List.generate(26, (i) => String.fromCharCode(97 + i));
   final List<String> hangmanParts = [
-    "assets/hangman_base.png",
-    "assets/hangman_head.png",
-    "assets/hangman_body.png",
-    "assets/hangman_right_arm.png",
-    "assets/hangman_left_arm.png",
-    "assets/hangman_right_leg.png",
-    "assets/hangman_left_leg.png",
+    "assets/hang_game/hangman_base.jpg",
+    "assets/hang_game/hangman_head.jpg",
+    "assets/hang_game/hangman_body.jpg",
+    "assets/hang_game/hangman_right_arm.jpg",
+    "assets/hang_game/hangman_left_arm.jpg",
+    "assets/hang_game/hangman_right_leg.jpg",
+    "assets/hang_game/hangman_left_leg.jpg",
   ];
+  final String initialHangmanImage = "assets/hang_game/hangman_initial.jpg";
+  final String winHangmanImage = "assets/hang_game/hangman_win.jpg";
+  bool showWinImage = false;
+
+  final List<String> alphabet = List.generate(26, (i) => String.fromCharCode(97 + i));
 
   @override
   void initState() {
@@ -59,24 +62,27 @@ class _Stage4ScreenState extends State<Stage4Screen> {
       secretWord.split('').every((ch) => guessedLetters.contains(ch));
 
   void _onLetterSelected(String letter) {
-    if (guessedLetters.contains(letter)) return;
+    if (guessedLetters.contains(letter) || showWinImage) return;
     setState(() {
       guessedLetters.add(letter);
       if (!secretWord.contains(letter)) mistakes++;
     });
 
     if (isWordGuessed) {
-      final bonus = max(0, (threshold - elapsedSeconds) * maxBonus ~/ threshold);
-      showRelationDialog(
-        context: context,
-        title: "DEVELOPMENT",
-        description:
-        "Развитие — ключевое слово для Neoflex. Мы вкладываемся в развитие сотрудников, продуктов и технологий каждый день!",
-        onContinue: () {
-          Provider.of<QuestProvider>(context, listen: false)
-              .completeStage(awardedPoints: 20 + bonus);
-        },
-      );
+      setState(() => showWinImage = true);
+      Timer(const Duration(seconds: 2), () {
+        final bonus = max(0, (threshold - elapsedSeconds) * maxBonus ~/ threshold);
+        showRelationDialog(
+          context: context,
+          title: "DEVELOPMENT",
+          description:
+          "Развитие — ключевое слово для Neoflex. Мы вкладываемся в развитие сотрудников, продуктов и технологий каждый день!",
+          onContinue: () {
+            Provider.of<QuestProvider>(context, listen: false)
+                .completeStage(awardedPoints: 20 + bonus);
+          },
+        );
+      });
     } else if (mistakes >= maxMistakes) {
       _showGameOverDialog();
     }
@@ -140,15 +146,27 @@ class _Stage4ScreenState extends State<Stage4Screen> {
         .split('')
         .map((l) => guessedLetters.contains(l) ? "$l " : "_ ")
         .join();
-    Widget hangmanDisplay = Container();
-    if (mistakes > 0 && mistakes <= hangmanParts.length) {
+
+    Widget hangmanDisplay;
+    if (showWinImage) {
+      hangmanDisplay = Image.asset(winHangmanImage, height: 150);
+    } else if (mistakes == 0) {
+      hangmanDisplay = Image.asset(initialHangmanImage, height: 150);
+    } else if (mistakes > 0 && mistakes <= hangmanParts.length) {
       hangmanDisplay = Image.asset(hangmanParts[mistakes - 1], height: 150);
+    } else {
+      hangmanDisplay = Container();
     }
 
     return Scaffold(
       backgroundColor: AppColors.dark,
       appBar: AppBar(
         backgroundColor: AppColors.violet,
+        iconTheme: const IconThemeData(color: Colors.white),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
         title: Text("Этап 4: Виселица", style: AppTextStyles.subtitle),
         centerTitle: true,
       ),
@@ -191,7 +209,7 @@ class _Stage4ScreenState extends State<Stage4Screen> {
               children: alphabet.map((letter) {
                 final used = guessedLetters.contains(letter);
                 return ElevatedButton(
-                  onPressed: used ? null : () => _onLetterSelected(letter),
+                  onPressed: used || showWinImage ? null : () => _onLetterSelected(letter),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: used ? AppColors.grey : AppColors.orange,
                     minimumSize: const Size(40, 40),

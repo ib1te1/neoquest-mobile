@@ -18,7 +18,7 @@ void main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
-        ChangeNotifierProvider(create: (_) => QuestProvider()), // <-- Добавляем QuestProvider
+        ChangeNotifierProvider(create: (_) => QuestProvider()),
       ],
       child: NeoflexQuestApp(),
     ),
@@ -36,7 +36,7 @@ class NeoflexQuestApp extends StatelessWidget {
       home: SplashScreen(),
       routes: {
         '/shop': (context) => ShopScreen(),
-        '/inventory': (context) => InventoryScreen(),// добавили маршрут магазина
+        '/inventory': (context) => InventoryScreen(),
       },
     );
   }

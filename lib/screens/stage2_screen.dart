@@ -78,7 +78,7 @@ class _Stage2ScreenState extends State<Stage2Screen> {
         backgroundColor: AppColors.dark,
         title: Text("Подсказка", style: AppTextStyles.subtitle),
         content: Text(
-          "Это шифр подстановкой. Буквы алфавита заменяются на буквы, расположенные по порядку на клавиатуре.",
+          "Это шифр подстановкой. Буквы алфавита заменяются на буквы, расположенные по порядку на клавиатуре. Пример: A -> Q, J -> P,     K -> A",
           style: AppTextStyles.body.copyWith(color: Colors.white),
         ),
         actions: [
@@ -98,6 +98,11 @@ class _Stage2ScreenState extends State<Stage2Screen> {
       backgroundColor: AppColors.dark,
       appBar: AppBar(
         backgroundColor: AppColors.violet,
+        iconTheme: const IconThemeData(color: Colors.white),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
         title: Text("Этап 2: Шифр подстановкой", style: AppTextStyles.subtitle),
         centerTitle: true,
       ),
@@ -125,41 +130,109 @@ class _Stage2ScreenState extends State<Stage2Screen> {
             ),
             const SizedBox(height: 20),
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: AppColors.purple.withOpacity(0.2),
+                gradient: const LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Color(0xFF821363),
+                    Color(0xFFD2005A),
+                    Color(0xFFE63B31),
+                    Color(0xFFFF9F18),
+                  ],
+                ),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: AppColors.purple.withOpacity(0.5)),
               ),
-              child: Center(
-                child: Text(
-                  encryptedWord,
-                  style: AppTextStyles.headline,
-                  textAlign: TextAlign.center,
+              child: Container(
+                margin: const EdgeInsets.all(2),
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: AppColors.purple.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Center(
+                  child: Text(
+                    encryptedWord,
+                    style: AppTextStyles.headline,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             ),
             const SizedBox(height: 30),
-            TextField(
-              controller: answerController,
-              style: AppTextStyles.body.copyWith(color: Colors.white),
-              decoration: InputDecoration(
-                labelText: "Ваш ответ",
-                labelStyle: AppTextStyles.body.copyWith(color: Colors.white70),
-                errorText: errorText,
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+            Container(
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Color(0xFF821363),
+                    Color(0xFFD2005A),
+                    Color(0xFFE63B31),
+                    Color(0xFFFF9F18),
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Container(
+                margin: const EdgeInsets.all(2),
+                decoration: BoxDecoration(
+                  color: AppColors.dark,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: TextField(
+                  controller: answerController,
+                  style: AppTextStyles.body.copyWith(color: Colors.white),
+                  decoration: InputDecoration(
+                    labelText: "Ваш ответ",
+                    labelStyle: AppTextStyles.body.copyWith(color: Colors.white70),
+                    errorText: errorText,
+                    border: InputBorder.none,
+                    contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                  ),
+                ),
               ),
             ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () => _checkAnswer(context),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.orange,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            const SizedBox(height: 100),
+            Align(
+              alignment: Alignment.center,
+              child: SizedBox(
+                width: 200,
+                child: ElevatedButton(
+                  onPressed: () => _checkAnswer(context),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    shape:
+                    RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                  ),
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [
+                          Color.fromRGBO(130, 19, 99, 0.6),
+                          Color.fromRGBO(210, 0, 90, 0.6),
+                          Color.fromRGBO(230, 59, 49, 0.6),
+                          Color.fromRGBO(255, 159, 24, 0.6),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 56,
+                      child: Text(
+                        "Проверить",
+                        style: AppTextStyles.body.copyWith(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
               ),
-              child: Text("Проверить", style: AppTextStyles.body.copyWith(color: Colors.white)),
             ),
             const SizedBox(height: 20),
             Row(

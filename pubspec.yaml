@@ -27,30 +27,11 @@ flutter:
 
   uses-material-design: true
   assets:
-    - assets/logo.jpg
-    - assets/mascot.jpg
-    - assets/stage3_images/distractor1.jpg
-    - assets/stage3_images/distractor2.jpg
-    - assets/stage3_images/distractor3.jpg
-    - assets/stage3_images/image_05.jpg
-    - assets/stage3_images/image_20.jpg
-    - assets/stage5_images/pear.png
-    - assets/stage5_images/strawberry.png
-    - assets/stage5_images/raspberry.png
-    - assets/stage5_images/orange.png
-    - assets/stage5_images/grapefruit.png
-    - assets/stage5_images/radish.png
-    - assets/stage5_images/eggplant.png
-    - assets/stage5_images/sunflower.png
-    - assets/shop/bottle.jpg
-    - assets/shop/notebook1.jpg
-    - assets/shop/notebook2.jpg
-    - assets/shop/plush.jpg
-    - assets/shop/powerbank.jpg
-    - assets/shop/speaker1.jpg
-    - assets/shop/speaker2.jpg
-    - assets/shop/stickers.jpg
-    - assets/shop/thermo.jpg
+    - assets/
+    - assets/stage3_images/
+    - assets/stage5_images/
+    - assets/shop/
+    - assets/hang_game/
   fonts:
     - family: Segoe UI
       fonts:

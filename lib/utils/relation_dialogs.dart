@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../utils/app_colors.dart';
 import '../utils/app_text_styles.dart';
 
-/// Показывает модальное окно с информацией о связи слова со стратегией Neoflex.
 void showRelationDialog({
   required BuildContext context,
   required String title,

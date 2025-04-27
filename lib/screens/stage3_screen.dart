@@ -85,7 +85,7 @@ class _Stage3ScreenState extends State<Stage3Screen> {
       context: context,
       builder: (ctx) => AlertDialog(
         backgroundColor: AppColors.dark,
-        title: Text("Подсказка", style: AppTextStyles.subtitle),
+        title: Text("Подсказка", style: AppTextStyles.body),
         content: Text(
           "Верные картинки как-то связаны с компанией, посмотрите внимательно.",
           style: AppTextStyles.body.copyWith(color: Colors.white),
@@ -93,8 +93,10 @@ class _Stage3ScreenState extends State<Stage3Screen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(),
-            child: Text("Закрыть",
-                style: AppTextStyles.body.copyWith(color: AppColors.cyan)),
+            child: Text(
+              "Закрыть",
+              style: AppTextStyles.body.copyWith(color: AppColors.cyan),
+            ),
           )
         ],
       ),
@@ -107,6 +109,11 @@ class _Stage3ScreenState extends State<Stage3Screen> {
       backgroundColor: AppColors.dark,
       appBar: AppBar(
         backgroundColor: AppColors.violet,
+        iconTheme: const IconThemeData(color: Colors.white),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
         title: Text("Этап 3: Визуальная головоломка", style: AppTextStyles.subtitle),
         centerTitle: true,
       ),
@@ -141,8 +148,10 @@ class _Stage3ScreenState extends State<Stage3Screen> {
             ),
             if (errorText != null) ...[
               const SizedBox(height: 12),
-              Text(errorText!,
-                  style: AppTextStyles.body.copyWith(color: AppColors.orange)),
+              Text(
+                errorText!,
+                style: AppTextStyles.body.copyWith(color: AppColors.orange),
+              ),
             ],
             const SizedBox(height: 20),
             Wrap(
@@ -154,16 +163,46 @@ class _Stage3ScreenState extends State<Stage3Screen> {
                   .toList(),
             ),
             const SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: (selectedItems[0] != null && selectedItems[1] != null)
-                  ? () => _checkAnswer(context)
-                  : null,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.orange,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            Align(
+              alignment: Alignment.center,
+              child: SizedBox(
+                width: 200,
+                child: ElevatedButton(
+                  onPressed: (selectedItems[0] != null && selectedItems[1] != null)
+                      ? () => _checkAnswer(context)
+                      : null,
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                    elevation: 0,
+                    backgroundColor: Colors.transparent,
+                  ),
+                  child: Ink(
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [
+                          Color.fromRGBO(130, 19, 99, 0.6),
+                          Color.fromRGBO(210, 0, 90, 0.6),
+                          Color.fromRGBO(230, 59, 49, 0.6),
+                          Color.fromRGBO(255, 159, 24, 0.6),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 56,
+                      child: Text(
+                        "Проверить",
+                        style: AppTextStyles.body.copyWith(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                ),
               ),
-              child: Text("Проверить", style: AppTextStyles.body.copyWith(color: Colors.white)),
             ),
             const SizedBox(height: 20),
             Row(
@@ -171,17 +210,23 @@ class _Stage3ScreenState extends State<Stage3Screen> {
               children: [
                 TextButton(
                   onPressed: () => _skipStage(context),
-                  child: Text("Пропустить",
-                      style: AppTextStyles.subtitle.copyWith(
-                          color: AppColors.cyan,
-                          decoration: TextDecoration.underline)),
+                  child: Text(
+                    "Пропустить",
+                    style: AppTextStyles.body.copyWith(
+                      color: AppColors.cyan,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
                 ),
                 TextButton(
                   onPressed: _showHintDialog,
-                  child: Text("Подсказка",
-                      style: AppTextStyles.subtitle.copyWith(
-                          color: AppColors.cyan,
-                          decoration: TextDecoration.underline)),
+                  child: Text(
+                    "Подсказка",
+                    style: AppTextStyles.body.copyWith(
+                      color: AppColors.cyan,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -217,7 +262,7 @@ class _Stage3ScreenState extends State<Stage3Screen> {
           );
         } else {
           content = Center(
-            child: Text("Slot ${index + 1}",
+            child: Text("",
                 style: AppTextStyles.body.copyWith(color: Colors.white70)),
           );
         }
@@ -229,8 +274,7 @@ class _Stage3ScreenState extends State<Stage3Screen> {
             color: candidateData.isNotEmpty
                 ? AppColors.purple.withOpacity(0.4)
                 : AppColors.purple.withOpacity(0.2),
-            border:
-            Border.all(color: AppColors.purple.withOpacity(0.5), width: 2),
+            border: Border.all(color: AppColors.purple.withOpacity(0.5), width: 2),
             borderRadius: BorderRadius.circular(12),
           ),
           child: content,
@@ -258,8 +302,10 @@ class _Stage3ScreenState extends State<Stage3Screen> {
     return Container(
       width: 100,
       height: 100,
-      decoration:
-      BoxDecoration(border: Border.all(color: AppColors.grey, width: 2), borderRadius: BorderRadius.circular(8)),
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColors.grey, width: 2),
+        borderRadius: BorderRadius.circular(8),
+      ),
       child: Image.asset(item.assetPath, fit: BoxFit.cover),
     );
   }
